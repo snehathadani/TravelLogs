@@ -10,7 +10,7 @@ export class MapContainer extends React.Component {
   state = {
     markers: [],
     showModal: false,
-    modalStyle: getModalStyle()
+    center: {}
   };
 
   toggleModal = () => {
@@ -19,17 +19,20 @@ export class MapContainer extends React.Component {
 
   render() {
 
-    const { classes } = this.props;console.log("Clases", classes);
+    const { classes } = this.props;
+    console.log("Clases", classes.paper, classes.dialogPaper, classes.modal);
     console.log("stae", this.state)
-    const { markers, showModal, modalStyle } = this.state;
+    const { markers, showModal, center } = this.state;
+
 
     return (
       <div style={{
         width: '100vw',
         height: '100vh'
       }} >
-        <Map google={this.props.google}
-          onClick={(_props, _map, e) => { this.setState({ markers: [...markers, e.latLng], showModal: !showModal}) }} >
+        <Map google={this.props.google} 
+          center = {center}
+          onClick={(_props, _map, e) => {this.setState({ markers: [...markers, e.latLng], center: {lat: e.latLng.lat() - .011, lng:e.latLng.lng() + 0.013},  showModal: !showModal }) }} >
           {this.state.markers.map((latLng) => <Marker position={{ lat: latLng.lat(), lng: latLng.lng() }} />)}
         </Map>
 
@@ -39,10 +42,13 @@ export class MapContainer extends React.Component {
           open={showModal}
           onClose={this.toggleModal}
         >
-          <div style={modalStyle} className={classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
+          <div className={classes.dialog}>
+            <h2 id="simple-modal-title" text='#111111'>Where would you like to go next</h2>
             <p id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              <ul>
+                <li>Start a new trip</li>
+                <li>View other trips</li> 
+              </ul>
           </p>
           </div>
         </Modal>
@@ -72,19 +78,14 @@ function getModalStyle() {
   };
 }
 
-const styles = theme => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    //backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    //boxShadow: theme.shadows[5],
-    //padding: theme.spacing(2, 4, 3),
-  },
+const styles = theme => {
+  return ({
+    dialog: {...theme.dialogPaper, ...theme.modal, color: 'white'},
+  })
+};
 
-});
+console.log("styles are", styles);
 
-
-export default withStyles(styles) (GoogleApiWrapper({
+export default withStyles(styles)(GoogleApiWrapper({
   apiKey: 
 })(MapContainer))

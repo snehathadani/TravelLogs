@@ -3,13 +3,15 @@ import { Route } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import MapContainer from './Components/MapView/MapContainer';
+import { MuiThemeProvider } from '@material-ui/core';
+import theme from './theme';
 
 function App() {
   return (
-    <div className="App">
-     <LandingPage/>
-     <MapContainer />
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <LandingPage />
+      <MapContainer />
+    </MuiThemeProvider>
   );
 }
 
