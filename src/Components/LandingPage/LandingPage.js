@@ -1,8 +1,10 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import FrontPageImage from './FrontPageImage';
 import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
+import { withRouter } from "react-router";
+
 const LandingPage = (props)=> {
     return(
         <Grid container
@@ -14,10 +16,10 @@ const LandingPage = (props)=> {
           direction="row"
           justify= "flex-end">
             <Grid item> 
-    <FacebookLoginButton onClick={() => alert("Hello")} />
+    <FacebookLoginButton onClick={() => props.history.push('/map')} />
     </Grid>
     <Grid item> 
-    <InstagramLoginButton onClick={() => alert("Hello")} />
+    <InstagramLoginButton onClick={() => props.history.push('/map')} />
     </Grid>
     </Grid>
       </Grid>  
@@ -28,4 +30,4 @@ const LandingPage = (props)=> {
     );
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);

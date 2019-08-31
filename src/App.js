@@ -9,8 +9,9 @@ import theme from './theme';
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <LandingPage />
-      <MapContainer />
+      <Route exact path = '/' component = {LandingPage}/>
+      <Route exact path = '/map' component = {MapContainer}/>
+     
     </MuiThemeProvider>
   );
 }

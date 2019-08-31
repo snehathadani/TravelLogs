@@ -1,6 +1,5 @@
 import React from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from "@material-ui/styles";
@@ -46,13 +45,14 @@ export class MapContainer extends React.Component {
             <h2 id="simple-modal-title" text='#111111'>Where would you like to go next</h2>
             <p id="simple-modal-description">
               <ul>
+                
                 <li>Start a new trip</li>
                 <li>View other trips</li> 
               </ul>
           </p>
           </div>
         </Modal>
-
+      
 
       </div>
     )
