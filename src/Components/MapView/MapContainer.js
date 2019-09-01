@@ -3,26 +3,31 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from "@material-ui/styles";
+import SideDrawer from "./SideDrawer";
 
 export class MapContainer extends React.Component {
 
   state = {
     markers: [],
     showModal: false,
-    center: {}
+    center: {},
+   sideDrawer:false
   };
 
   toggleModal = () => {
     this.setState({ showModal: !this.state.showModal });
   }
 
+  toggleSideDrawer= ()=> {
+    this.setState({sideDrawer:!this.state.sideDrawer});
+  }
   render() {
 
     const { classes } = this.props;
     console.log("Clases", classes.paper, classes.dialogPaper, classes.modal);
     console.log("stae", this.state)
-    const { markers, showModal, center } = this.state;
-
+    const { markers, showModal, center,sideDrawer } = this.state;
+  
 
     return (
       <div style={{
@@ -46,12 +51,13 @@ export class MapContainer extends React.Component {
             <p id="simple-modal-description">
               <ul>
                 
-                <li>Start a new trip</li>
+                <li onClick={() => this.setState({ showModal:false,sideDrawer:true})}>Start a new trip</li>
                 <li>View other trips</li> 
               </ul>
           </p>
           </div>
         </Modal>
+        <SideDrawer onClose={this.toggleSideDrawer} open = {sideDrawer}/>
       
 
       </div>
@@ -63,20 +69,6 @@ export class MapContainer extends React.Component {
 }
 
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
 
 const styles = theme => {
   return ({
