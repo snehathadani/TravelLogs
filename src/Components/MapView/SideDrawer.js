@@ -23,10 +23,12 @@ const useStyles = makeStyles({
 });
 
 export default function SideDrawer(props) {
-  const [title, setuserInput] = useState({userTitle:"", userInput:"" });
+  const [userTitle, setTitle] = useState("");
+  const [eventDate, setDate] = useState(new Date());
+  const [description, setDescription] = useState("");
+  const [events, addEvent] = useState([]);
   const classes = useStyles();
-
-
+  console.log("STate", events)
   const sideList = side => (
     <div
       className={classes.list}
@@ -39,7 +41,7 @@ export default function SideDrawer(props) {
       <FormControl>
 
         <InputLabel htmlFor="my-input" >Title</InputLabel>
-        <Input id="my-input" aria-describedby="my-helper-text" />
+        <Input id="my-input" aria-describedby="my-helper-text" onChange={(e) => { setTitle(e.target.value) }} />
         <FormHelperText id="my-helper-text">how you feel about this trip</FormHelperText>
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -51,8 +53,8 @@ export default function SideDrawer(props) {
             margin="normal"
             id="date-picker-inline"
             label="Trip date"
-            //value={selectedDate}
-            //onChange={handleDateChange}
+            value={eventDate}
+            onChange={(date) => { setDate(date) }}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}
@@ -64,15 +66,25 @@ export default function SideDrawer(props) {
           rows={4}
           aria-label="maximum height"
           placeholder="Describe your trip in 250 characters"
-          
+          onChange={(e) => { setDescription(e.target.value) }}
+
 
         />
-        <Button variant="contained" size="small" className={classes.button} >
-          <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
+        <Button variant="contained" size="small" className={classes.button} onClick={() => addEvent([...events, { title: userTitle, date: eventDate, note: description }])}>
+          <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)}  />
           Save
       </Button>
       </FormControl>
+      <List>
+        {events.map(({title,date,note}) => (
+        <ListItem>
+          <ListItemText primary= {`${title}  ${date}  ${note}`}>
+          
 
+          </ListItemText>
+        </ListItem>)
+        )}
+      </List>
 
     </div>
   );
