@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -7,12 +7,15 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import {useEffect} from 'react';
+import { FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import SaveIcon from '@material-ui/icons/Save';
+import clsx from 'clsx';
 const useStyles = makeStyles({
   list: {
-    width: 250,
+    width: "45vh",
   },
   fullList: {
     width: 'auto',
@@ -20,6 +23,7 @@ const useStyles = makeStyles({
 });
 
 export default function SideDrawer(props) {
+  const [title, setuserInput] = useState({userTitle:"", userInput:"" });
   const classes = useStyles();
 
 
@@ -27,30 +31,53 @@ export default function SideDrawer(props) {
     <div
       className={classes.list}
       role="presentation"
-      onClick={props.onClose}
-
+    //onClick={props.onClose}
     >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+
+
+
+      <FormControl>
+
+        <InputLabel htmlFor="my-input" >Title</InputLabel>
+        <Input id="my-input" aria-describedby="my-helper-text" />
+        <FormHelperText id="my-helper-text">how you feel about this trip</FormHelperText>
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+          <KeyboardDatePicker
+            disableToolbar
+            variant="inline"
+            format="MM/dd/yyyy"
+            margin="normal"
+            id="date-picker-inline"
+            label="Trip date"
+            //value={selectedDate}
+            //onChange={handleDateChange}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+
+        </MuiPickersUtilsProvider>
+        <TextareaAutosize
+          rowsMax={10}
+          rows={4}
+          aria-label="maximum height"
+          placeholder="Describe your trip in 250 characters"
+          
+
+        />
+        <Button variant="contained" size="small" className={classes.button} >
+          <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
+          Save
+      </Button>
+      </FormControl>
+
+
     </div>
   );
 
- console.log("props", props);
+  console.log("props", props);
   return (
     <div>
       <Drawer anchor="right" open={props.open} onClose={props.onClose}>
