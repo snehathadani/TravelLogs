@@ -70,7 +70,7 @@ export default function SideDrawer(props) {
 
 
         />
-        <Button variant="contained" size="small" className={classes.button} onClick={() => addEvent([...events, { title: userTitle, date: eventDate, note: description }])}>
+        <Button variant="contained" size="small" className={classes.button} color="primary" onClick={() => addEvent([...events, { title: userTitle, date: eventDate, note: description }])}>
           <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)}  />
           Save
       </Button>

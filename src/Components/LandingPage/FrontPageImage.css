@@ -1,25 +1,23 @@
 .Image-Grid{
     background-color: white;
-    padding:8px;
-    height:100%;
+    height: auto;
     box-sizing: border-box;
-    border-radius: 5px;
     position: relative;
-    margin: 0 auto;
- 
+  
+  
 }
 
 .img{
-   
- background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+    margin: 0 auto;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: contain;
 }
 
 .content {
-    position: absolute; /* Position the background text */
-    bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+    position: fixed; /* Position the background text */
+    top: 25%; /* At the bottom. Use top:0 to append it to the top */
     background: rgb(0, 0, 0); /* Fallback color */
     background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
     color: #f1f1f1; /* Grey text */
@@ -29,10 +27,8 @@
 }
 .img-text{
     text-align: center;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute;
+    /*transform: translate(-50%, -50%);*/
     color: white;
     
 } 

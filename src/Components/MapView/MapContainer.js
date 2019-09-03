@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Modal from '@material-ui/core/Modal';
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
 import SideDrawer from './SideDrawer';
-
+import  './MapView.css';
 const MapContainer = (props) => {
 
   const [markers, setMarkers] = useState([]);
@@ -12,7 +12,7 @@ const MapContainer = (props) => {
   const [sideDrawer, setSideDrawer] = useState(false);
 
   const toggleModal = () => {
-    setShowModal(showModal);
+    setShowModal(!showModal);
   }
 
   const toggleSideDrawer = () => {
@@ -21,8 +21,8 @@ const MapContainer = (props) => {
 
   const onMapClick = (e) => {
     setMarkers([...markers, e.latLng]);
-    setShowModal(!showModal)
-    setCenter({ lat: e.latLng.lat() - .011, lng: e.latLng.lng() + 0.013 })
+    toggleModal();
+    setCenter({ lat: e.latLng.lat() - .005, lng: e.latLng.lng() + 0.009 })
   }
 
   const { classes } = props;
@@ -34,7 +34,7 @@ const MapContainer = (props) => {
       width: '100vw',
       height: '100vh'
     }} >
-      <Map google={props.google}
+      <Map google={props.google} 
         center={center}
         onClick={(_props, _map, e) => onMapClick(e)}>
         {markers.map((latLng) => <Marker position={{ lat: latLng.lat(), lng: latLng.lng() }} />)}
@@ -64,16 +64,12 @@ const MapContainer = (props) => {
   )
 }
 
-
-
-const styles = theme => {
-  return ({
-    dialog: { ...theme.dialogPaper, ...theme.modal, color: 'white' },
-  })
-};
+const styles = theme => ({
+    dialog: theme.modal
+  });
 
 console.log("styles are", styles);
 
-export default withStyles(styles)(GoogleApiWrapper({
+export default (GoogleApiWrapper({
   apiKey: process.env.REACT_APP_MAPS_API_KEY
-})(MapContainer))
+})(withStyles(styles)(MapContainer)))

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import MapContainer from './Components/MapView/MapContainer';
-import { MuiThemeProvider } from '@material-ui/core';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 
 function App() {

@@ -2,32 +2,25 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 //import Button from '@material-ui/core/Button';
 import FrontPageImage from './FrontPageImage';
-import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
+import './FrontPageImage.css';
 import { withRouter } from "react-router";
+import AppBar from '../Header/AppBar';
 
-const LandingPage = (props)=> {
-    return(
-        <Grid container
-  direction="column"
-  justify="space-between"
-  alignItems="stretch">
-    <Grid item> 
+
+const LandingPage = (props) => {
+  return (
     <Grid container
-          direction="row"
-          justify= "flex-end">
-            <Grid item> 
-    <FacebookLoginButton onClick={() => props.history.push('/map')} />
+      direction="column"
+      justify="center"
+      alignItems="stretch">
+      <Grid item xs={12}>
+          <AppBar />
+      </Grid>
+      <Grid item xs={8}>
+        <FrontPageImage/>
+      </Grid>
     </Grid>
-    <Grid item> 
-    <InstagramLoginButton onClick={() => props.history.push('/map')} />
-    </Grid>
-    </Grid>
-      </Grid>  
-      <Grid item xs={1}>
-        <FrontPageImage height="4%"/>
-        </Grid> 
-  </Grid>
-    );
+  );
 }
 
-export default withRouter(LandingPage);
+export default LandingPage;
