@@ -14,7 +14,7 @@ const LandingPage = (props) => {
       justify="center"
       alignItems="stretch">
       <Grid item xs={12} sm={6}>
-          <AppBar />
+          <AppBar showAuth />
       </Grid>
       <Grid item xs={8} sm={4}>
         <FrontPageImage/>

@@ -3,7 +3,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from "@material-ui/core/styles";
 import SideDrawer from './SideDrawer';
-import  './MapView.css';
+import ApplicationBar from '../Header/AppBar';
 const MapContainer = (props) => {
 
   const [markers, setMarkers] = useState([]);
@@ -34,6 +34,7 @@ const MapContainer = (props) => {
       width: '100vw',
       height: '100vh'
     }} >
+      <ApplicationBar/>
       <Map google={props.google} 
         zoom={8}
         minZoom={4}

@@ -12,16 +12,16 @@ const styles = (theme) => ({
     },
     title: {
         flexGrow: 1,
-        position :'absolute',
-         top :"50%",
-        left :"40%",
-        textAlign :"center",
-        
+        position: 'absolute',
+        top: "50%",
+        left: "40%",
+        textAlign: "center",
+
     }
 });
 
 function ApplicationBar(props) {
-    const {classes} = props;
+    const { classes } = props;
     console.log("appbar classes", classes)
 
     return (
@@ -31,12 +31,15 @@ function ApplicationBar(props) {
 
                     <Grid container direction="row" justify="flex-end">
                         <Grid item xs={8} className={classes.title}> TravelLogs</Grid>
-                        <Grid item xs={2}>
-                            <FacebookLoginButton onClick={() => props.history.push('/map')} />
-                        </Grid>
-                        <Grid item xs={2}>
-                            <InstagramLoginButton onClick={() => props.history.push('/map')} />
-                        </Grid>
+                        {props.showAuth &&
+                            (<React.Fragment>
+                                <Grid item xs={2}>
+                                    <FacebookLoginButton onClick={() => props.history.push('/map')} />
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <InstagramLoginButton onClick={() => props.history.push('/map')} />
+                                </Grid>
+                            </React.Fragment>)}
                     </Grid>
                 </Toolbar>
             </AppBar>
