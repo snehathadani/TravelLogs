@@ -13,10 +13,10 @@ const LandingPage = (props) => {
       direction="column"
       justify="center"
       alignItems="stretch">
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={6}>
           <AppBar />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={8} sm={4}>
         <FrontPageImage/>
       </Grid>
     </Grid>

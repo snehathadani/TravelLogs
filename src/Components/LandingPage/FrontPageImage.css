@@ -1,34 +1,45 @@
-.Image-Grid{
-    background-color: white;
+.Image-Grid {
+    
     height: auto;
     box-sizing: border-box;
-    position: relative;
-  
-  
-}
-
-.img{
-    margin: 0 auto;
-    height: auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    object-fit: contain;
-}
-
-.content {
-    position: fixed; /* Position the background text */
-    top: 25%; /* At the bottom. Use top:0 to append it to the top */
-    background: rgb(0, 0, 0); /* Fallback color */
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-    color: #f1f1f1; /* Grey text */
-    width: 100%; /* Full width */
-    padding: 20px; /* Some padding */
     
 }
-.img-text{
-    text-align: center;
+
+.img {
+    background-size: cover;
     position: absolute;
-    /*transform: translate(-50%, -50%);*/
-    color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.6;
+    padding:1px;
+   border:2px solid #0d2b06;
+   background-color:#ff0;
     
-} 
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.title{
+    display:flex;
+    text-transform: uppercase;
+    margin-top: 270px;
+    margin-left: 70px;
+    color: #33691e;
+   
+}
+.sub-title {
+    width: 50%;
+    display: block;
+    text-align: center;
+    margin-left:70px;
+    color: #33691e;
+    }
+    

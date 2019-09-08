@@ -2,17 +2,13 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import { FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import SaveIcon from '@material-ui/icons/Save';
 import clsx from 'clsx';
+import TripView from './TripView';
 const useStyles = makeStyles({
   list: {
     width: "45vh",
@@ -75,16 +71,7 @@ export default function SideDrawer(props) {
           Save
       </Button>
       </FormControl>
-      <List>
-        {events.map(({title,date,note}) => (
-        <ListItem>
-          <ListItemText primary= {`${title}  ${date}  ${note}`}>
-          
-
-          </ListItemText>
-        </ListItem>)
-        )}
-      </List>
+      <TripView events= {events}/>
 
     </div>
   );

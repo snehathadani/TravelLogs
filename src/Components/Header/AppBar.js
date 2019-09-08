@@ -12,6 +12,11 @@ const styles = (theme) => ({
     },
     title: {
         flexGrow: 1,
+        position :'absolute',
+         top :"50%",
+        left :"40%",
+        textAlign :"center",
+        
     }
 });
 
@@ -21,11 +26,11 @@ function ApplicationBar(props) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed" color="primary" >
+            <AppBar position="fixed" color="primary"  >
                 <Toolbar >
 
                     <Grid container direction="row" justify="flex-end">
-                        <Grid item xs={8} justify="flex-start"> TravelLogs</Grid>
+                        <Grid item xs={8} className={classes.title}> TravelLogs</Grid>
                         <Grid item xs={2}>
                             <FacebookLoginButton onClick={() => props.history.push('/map')} />
                         </Grid>

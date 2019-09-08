@@ -35,6 +35,9 @@ const MapContainer = (props) => {
       height: '100vh'
     }} >
       <Map google={props.google} 
+        zoom={8}
+        minZoom={4}
+        maxZoom={8}
         center={center}
         onClick={(_props, _map, e) => onMapClick(e)}>
         {markers.map((latLng) => <Marker position={{ lat: latLng.lat(), lng: latLng.lng() }} />)}

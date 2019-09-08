@@ -1,5 +1,7 @@
-import green from '@material-ui/core/colors/green';
+
 import { createMuiTheme } from '@material-ui/core/styles';
+import { lightGreen } from '@material-ui/core/colors';
+import { AppBar } from '@material-ui/core/AppBar';
 
 const theme = createMuiTheme({
     modal: {
@@ -16,8 +18,9 @@ const theme = createMuiTheme({
         minWidth: '30rem',
         minHeight: '30vh',
     },
+
     palette:{
-        primary: green,
+        primary: lightGreen,
     }
 });
 
