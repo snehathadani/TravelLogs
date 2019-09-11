@@ -1,12 +1,14 @@
 const express = require('express'); // import the express package
-const instagram= require(`passport-instagram`);
+const instagram= require('passport-instagram');
 const passport = require('passport');
-const session= require('express.session');
+const session= require('express-session');
 const server = express(); // creates the server
-const instagramStrategy = instagram.Strategy;
+const InstagramStrategy = instagram.Strategy;
+require('dotenv').config();
 
 
 server.use(passport.initialize());
+server.use(session({secret:process.env.SESSION_SECRET}))
 server.use(passport.session());
 
 passport.serializeUser((user, done) => {
@@ -19,8 +21,8 @@ passport.serializeUser((user, done) => {
 
   passport.use(new InstagramStrategy({
     clientID: process.env.INSTAGRAM_CLIENT_ID,
-    clientSecret: INSTAGRAM_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/instagram/callback"
+    clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
+    callbackURL: "http://localhost:5000/auth/instagram/callback"
   }, (accessToken, refreshToken, profile, done) => {
    
   }))
