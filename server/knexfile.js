@@ -14,7 +14,8 @@ module.exports = {
     connection: {
       database: 'travel_logs',
       user:     process.env.STAGING_DB_USER,
-      password: process.env.STAGING_DB_PASSWORD
+      password: process.env.STAGING_DB_PASSWORD,
+      debug: true,
     },
     pool: {
       min: 2,
