@@ -10,9 +10,9 @@ exports.up = function (knex) {
             table.string('insta_full_name', 255).nullable();
             table.string('insta_user_name', 255).nullable();
             table.string('email', 255).notNullable();
-            table.string('insta_id', 255).notNullable();
-            table.string('facebook_display_name', 255).notNullable();
-            table.string('facebook_id', 255).notNullable();
+            table.string('insta_id', 255).nullable();
+            table.string('facebook_display_name', 255).nullable();
+            table.string('facebook_id', 255).nullable();
             table.index(['username'], 'username_idx');
             table.index(['email'], 'email_idx');
         })
@@ -31,6 +31,6 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
     { return knex.schema
-        .dropTable("product")
+        .dropTable("triplog")
         .dropTable("user"); }; 
 };

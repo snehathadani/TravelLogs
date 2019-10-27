@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Modal from '@material-ui/core/Modal';
 import { withStyles } from "@material-ui/core/styles";
@@ -6,7 +6,17 @@ import SideDrawer from './SideDrawer';
 import ApplicationBar from '../Header/AppBar';
 const MapContainer = (props) => {
 
+  const server = "http://localhost:5000"
+
   const [markers, setMarkers] = useState([]);
+  useEffect(() => {
+      fetch(`${server}/api/triplog`)
+      .then(triplogs => triplogs.json())
+      .then(triplogs => {
+        console.log("triplogs", triplogs)
+        setMarkers(triplogs.map(trip => new window.google.maps.LatLng(trip.lat, trip.lng)))
+        console.log('markers', markers);
+    })}, [])
   const [showModal, setShowModal] = useState(false);
   const [center, setCenter] = useState({});
   const [sideDrawer, setSideDrawer] = useState(false);

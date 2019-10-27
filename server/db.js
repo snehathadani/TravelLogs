@@ -10,8 +10,18 @@ function findinstUser(id){
 
 }
 
-function saveLocation(locationInfo) {
-    db('triplog').returning(['id']).insert([locationInfo]);
+async function addUser(userInfo) {
+    console.log("addUSer", userInfo)
+    await db('user').insert(userInfo).returning('id');
 }
 
-module.exports = {findinstUser, saveLocation}
+async function saveLocation(locationInfo) {
+    await db('triplog').insert(locationInfo).returning('id');
+}
+
+async function getTripsForUser(userId) {
+    response = await db('triplog').where({user_id: userId}).select('id', 'lat', 'lng') //this api is used to plot the initial locations already visited by this user
+    return response;
+}
+
+module.exports = {addUser, saveLocation, getTripsForUser}

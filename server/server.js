@@ -3,14 +3,18 @@ const instagram= require('passport-instagram');
 const passport = require('passport');
 const session= require('express-session');
 const bodyParser = require('body-parser');
+var cors = require('cors');
+
 
 const server = express(); // creates the server
 const InstagramStrategy = instagram.Strategy;
 require('dotenv').config();
 
 const tripController = require('./controller/trip')
+const userController = require('./controller/user')
 
 
+server.use(cors())
 server.use(passport.initialize());
 //server.use(session({secret:process.env.SESSION_SECRET}))
 server.use(passport.session());
@@ -41,6 +45,7 @@ server.get('/', (req, res) => {
 
 //routes
 tripController(server);
+userController(server);
 
 // watch for connections on port 5000
 server.listen(5000, () =>
