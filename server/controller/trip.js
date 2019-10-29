@@ -23,4 +23,15 @@ module.exports = function(server) {
             next(e)
         }
     })
+
+    server.get("/api/triplog/tripsFor", async(req, res, next) => {
+        try {
+            const user_id = 3; //TODO fix after auth get from req object
+            console.log(req.query)
+            const response = await db.getTripDetailsByLocation(req.query.lat, req.query.lng);
+            return res.status(200).json(response);
+        } catch (e) {
+            next(e);
+        }
+    })
 }

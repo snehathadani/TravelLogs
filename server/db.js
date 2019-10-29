@@ -24,4 +24,9 @@ async function getTripsForUser(userId) {
     return response;
 }
 
-module.exports = {addUser, saveLocation, getTripsForUser}
+async function getTripDetailsByLocation(lat, lng) {
+    response = await db('triplog').join('user', 'user.id', '=', 'triplog.user_id').where({lat, lng}).select('username', 'description')
+    return response;
+}
+
+module.exports = {addUser, saveLocation, getTripsForUser, getTripDetailsByLocation}

@@ -16,7 +16,7 @@ const MapContainer = (props) => {
         console.log("triplogs", triplogs)
         setMarkers(triplogs.map(trip => new window.google.maps.LatLng(trip.lat, trip.lng)))
         console.log('markers', markers);
-    })}, [])
+    })}, markers)
   const [showModal, setShowModal] = useState(false);
   const [center, setCenter] = useState({});
   const [sideDrawer, setSideDrawer] = useState(false);
@@ -39,6 +39,7 @@ const MapContainer = (props) => {
   console.log("Clases", classes.paper, classes.dialogPaper, classes.modal);
 
 
+  console.log("render markers" , markers)
   return (
     <div style={{
       width: '100vw',
@@ -51,7 +52,9 @@ const MapContainer = (props) => {
         maxZoom={8}
         center={center}
         onClick={(_props, _map, e) => onMapClick(e)}>
-        {markers.map((latLng) => <Marker position={{ lat: latLng.lat(), lng: latLng.lng() }} />)}
+        {markers.map((latLng) => {
+        console.log("marker in map", latLng.lat(), latLng.lng())  
+        return <Marker position={{ lat: latLng.lat(), lng: latLng.lng() }} />})}
       </Map>
 
       <Modal
