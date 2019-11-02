@@ -14,12 +14,14 @@ const MapContainer = (props) => {
       .then(triplogs => triplogs.json())
       .then(triplogs => {
         console.log("triplogs", triplogs)
-        setMarkers(triplogs.map(trip => new window.google.maps.LatLng(trip.lat, trip.lng)))
+        setMarkers(triplogs.map(trip => {return {latLng: new window.google.maps.LatLng(trip.lat, trip.lng), id: trip.id}}))
         console.log('markers', markers);
     })}, markers)
   const [showModal, setShowModal] = useState(false);
   const [center, setCenter] = useState({});
   const [sideDrawer, setSideDrawer] = useState(false);
+  const [sideDrawerLatLng, setSideDrawerLatLng] = useState({lat:0, lng: 0});
+
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -30,7 +32,7 @@ const MapContainer = (props) => {
   }
 
   const onMapClick = (e) => {
-    setMarkers([...markers, e.latLng]);
+    setMarkers([...markers, {latLng: e.latLng}]);
     toggleModal();
     setCenter({ lat: e.latLng.lat() - .005, lng: e.latLng.lng() + 0.009 })
   }
@@ -52,9 +54,12 @@ const MapContainer = (props) => {
         maxZoom={8}
         center={center}
         onClick={(_props, _map, e) => onMapClick(e)}>
-        {markers.map((latLng) => {
-        console.log("marker in map", latLng.lat(), latLng.lng())  
-        return <Marker position={{ lat: latLng.lat(), lng: latLng.lng() }} />})}
+        {markers.map((latLng) =>  <Marker 
+        position={{ lat: latLng.latLng.lat(), lng: latLng.latLng.lng() }} 
+        onClick = {() => {
+          setSideDrawer(true)
+          setSideDrawerLatLng({ lat: latLng.latLng.lat().toFixed(4), lng: latLng.latLng.lng().toFixed(4) })
+        }}/>)}
       </Map>
 
       <Modal
@@ -74,7 +79,7 @@ const MapContainer = (props) => {
         </div>
       </Modal>
 
-      <SideDrawer onClose={toggleSideDrawer} open={sideDrawer} />
+      <SideDrawer onClose={toggleSideDrawer} open={sideDrawer} lat={sideDrawerLatLng.lat} lng={sideDrawerLatLng.lng}/>
 
 
     </div>

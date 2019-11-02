@@ -20,6 +20,7 @@ server.use(passport.initialize());
 server.use(passport.session());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+server.disable('etag');
 
 passport.serializeUser((user, done) => {
     done(null, user)

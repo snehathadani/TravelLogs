@@ -27,11 +27,11 @@ const TripView = (props) => {
     const classes = useStyles();
     return (
         <List>
-            {props.events.map(({ title, date, note }) => (
+            {props.events.map(({ title, date, note,name }) => (
                 <React.Fragment>
                     <ListItem alignItems="flex-start">
                         <ListItemAvatar>
-                            <Avatar alt="Remy Sharp" > R </Avatar>
+                            <Avatar alt={name} > {name[0]} </Avatar>
                         </ListItemAvatar>
                         <ListItemText
                             primary={`${title} ${moment(date).fromNow()}`}
@@ -43,7 +43,7 @@ const TripView = (props) => {
                                         className={classes.inline}
                                         color="textPrimary"
                                     >
-                                        Ali Connors
+                                        {name}
                   </Typography>
                                     {note}
                                 </React.Fragment>

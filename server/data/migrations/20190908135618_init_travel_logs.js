@@ -21,8 +21,8 @@ exports.up = function (knex) {
             table.integer('user_id').notNullable().references('id').inTable('user');
             table.string('location_name', 255).notNullable();
             table.string('country', 255).notNullable();
-            table.float('lat', 14, 10).notNullable();
-            table.float('lng', 14, 10).notNullable();
+            table.decimal('lat').notNullable();
+            table.decimal('lng').notNullable();
         });
 
 

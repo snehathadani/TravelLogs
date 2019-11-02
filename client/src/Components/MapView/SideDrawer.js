@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -18,11 +18,21 @@ const useStyles = makeStyles({
   },
 });
 
+const server = "http://localhost:5000" //for now fix this later
+
 export default function SideDrawer(props) {
   const [userTitle, setTitle] = useState("");
   const [eventDate, setDate] = useState(new Date());
   const [description, setDescription] = useState("");
   const [events, addEvent] = useState([]);
+  useEffect(() => {
+    if(props.lat !== 0 && props.lng !== 0) {
+      fetch(`${server}/api/triplog/tripsFor?lat=${props.lat}&lng=${props.lng}`)
+      .then(events => events.json())
+      .then(events => addEvent(events.map(e => {return {title: 'Some plain old title in db', date: new Date(), note: e.description, name: e.username}}))) 
+    }
+  },[props])
+
   const classes = useStyles();
   console.log("STate", events)
   const sideList = side => (
@@ -66,7 +76,7 @@ export default function SideDrawer(props) {
 
 
         />
-        <Button variant="contained" size="small" className={classes.button} color="primary" onClick={() => addEvent([...events, { title: userTitle, date: eventDate, note: description }])}>
+        <Button variant="contained" size="small" className={classes.button} color="primary" onClick={() => addEvent([...events, { title: userTitle, date: eventDate, note: description, name: "sneha" }])}>
           <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)}  />
           Save
       </Button>
