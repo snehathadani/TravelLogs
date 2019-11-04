@@ -4,18 +4,16 @@ import Modal from '@material-ui/core/Modal';
 import { withStyles } from "@material-ui/core/styles";
 import SideDrawer from './SideDrawer';
 import ApplicationBar from '../Header/AppBar';
+import axios from 'axios';
 const MapContainer = (props) => {
 
   const server = "http://localhost:5000"
 
   const [markers, setMarkers] = useState([]);
   useEffect(() => {
-      fetch(`${server}/api/triplog`)
-      .then(triplogs => triplogs.json())
+      axios.get(`${server}/api/triplog`)
       .then(triplogs => {
-        console.log("triplogs", triplogs)
-        setMarkers(triplogs.map(trip => {return {latLng: new window.google.maps.LatLng(trip.lat, trip.lng), id: trip.id}}))
-        console.log('markers', markers);
+        setMarkers(triplogs.data.map(trip => {return {latLng: new window.google.maps.LatLng(trip.lat, trip.lng), id: trip.id}}))
     })}, markers)
   const [showModal, setShowModal] = useState(false);
   const [center, setCenter] = useState({});

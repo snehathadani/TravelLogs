@@ -14,10 +14,17 @@ const LandingPage = (props) => {
       justify="center"
       alignItems="stretch">
       <Grid item xs={12} sm={6}>
-          <AppBar showAuth />
+        <AppBar showAuth />
       </Grid>
       <Grid item xs={8} sm={4}>
-        <FrontPageImage/>
+        <FrontPageImage />
+        <div className="flex-center">
+
+          <h1 className="title" > Welcome to TravelLogs</h1>
+
+          <p className="sub-title"> Do wish to relive the moments whenever you visit a new place? Or may be tell a friend about your trip, or advice others?
+      You have come to the right place. Make a log of places you have visited, mark locations, make new friends, view what other travellers are doing, and be a guide to help others.</p>
+        </div>
       </Grid>
     </Grid>
   );

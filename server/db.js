@@ -25,7 +25,7 @@ async function getTripsForUser(userId) {
 }
 
 async function getTripDetailsByLocation(lat, lng) {
-    response = await db('triplog').join('user', 'user.id', '=', 'triplog.user_id').where({lat, lng}).select('username', 'description')
+    response = await db('triplog').join('user', 'user.id', '=', 'triplog.user_id').where({lat, lng}).select('username', 'description', 'location_name')
     return response;
 }
 
