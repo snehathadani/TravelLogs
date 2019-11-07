@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
 import { withRouter } from 'react-router';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 const styles = (theme) => ({
     root: {
         flexGrow: 1,
@@ -12,11 +12,11 @@ const styles = (theme) => ({
     },
     title: {
         flexGrow: 1,
-        position: 'absolute',
-        top: "50%",
-        left: "40%",
         textAlign: "center",
-
+        fontWeight:"fontWeightBold",
+        fontFamily:theme.typography.fontFamily,
+        
+        
     }
 });
 
@@ -28,9 +28,10 @@ function ApplicationBar(props) {
         <div className={classes.root}>
             <AppBar position="fixed" color="primary"  >
                 <Toolbar >
-
                     <Grid container direction="row" justify="flex-end">
-                        <Grid item xs={8} className={classes.title}> TravelLogs</Grid>
+                        <Grid item xs={props.showAuth ? 4 : 12}  > 
+                            <Typography className={classes.title} variant="h3" component="h2"> TravelLogs </Typography> 
+                        </Grid>
                         {props.showAuth &&
                             (<React.Fragment>
                                 <Grid item xs={2}>

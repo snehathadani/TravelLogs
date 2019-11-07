@@ -21,7 +21,10 @@ const theme = createMuiTheme({
 
     palette:{
         primary: lightGreen,
-    }
+    },
+    typography: {
+        fontFamily: 'Roboto'
+    } 
 });
 
 export default theme;

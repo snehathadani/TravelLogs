@@ -24,6 +24,8 @@ const useStyles = makeStyles(theme => ({
 
 
 const TripView = (props) => {
+
+
     const classes = useStyles();
     return (
         <List>

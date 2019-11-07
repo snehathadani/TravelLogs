@@ -1,32 +1,38 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 //import Button from '@material-ui/core/Button';
-import FrontPageImage from './FrontPageImage';
-import './FrontPageImage.css';
+//import FrontPageImage from './FrontPageImage';
+//import './FrontPageImage.css';
+import Typography from '@material-ui/core/Typography';
 import { withRouter } from "react-router";
 import AppBar from '../Header/AppBar';
-
-
+//import classes from './landingPage.css';
+import FrontPageImg from '../../Assets/Images/earth-run-trzown-latham.gif';
+import Container from '@material-ui/core/Container';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+const styles = (theme) => ({
+  root: {
+      flexGrow: 1,
+      color: theme.color,
+  }
+});
 const LandingPage = (props) => {
   return (
-    <Grid container
-      direction="column"
-      justify="center"
-      alignItems="stretch">
-      <Grid item xs={12} sm={6}>
-        <AppBar showAuth />
+    <React.Fragment>
+      <Grid>
+        <AppBar showAuth/>
       </Grid>
-      <Grid item xs={8} sm={4}>
-        <FrontPageImage />
-        <div className="flex-center">
+      <div style={{ marginTop: "60px", background: "#1A3946" }} >
+        <Grid container direction="row" alignItems="center">
+          <Grid item xs={2}> </Grid>
+          <Grid item xs={8}>
+            <img alt="complex" src={FrontPageImg} />
+          </Grid>
 
-          <h1 className="title" > Welcome to TravelLogs</h1>
-
-          <p className="sub-title"> Do wish to relive the moments whenever you visit a new place? Or may be tell a friend about your trip, or advice others?
-      You have come to the right place. Make a log of places you have visited, mark locations, make new friends, view what other travellers are doing, and be a guide to help others.</p>
-        </div>
-      </Grid>
-    </Grid>
+          <Grid item xs={2} />
+        </Grid>
+      </div>
+    </React.Fragment>
   );
 }
 
