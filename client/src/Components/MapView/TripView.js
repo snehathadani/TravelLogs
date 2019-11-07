@@ -9,7 +9,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
@@ -18,6 +20,11 @@ const useStyles = makeStyles(theme => ({
     },
     inline: {
         display: 'inline',
+    },
+    icon: {
+        verticalAlign: 'bottom',
+        height: 20,
+        width: 20,
     },
 }));
 
@@ -28,15 +35,16 @@ const TripView = (props) => {
 
     const classes = useStyles();
     return (
-        <List>
-            {props.events.map(({ title, date, note,name }) => (
+        <List className={classes.root} >
+            {props.events.map(({ title, date, note, name }) => (
                 <React.Fragment>
                     <ListItem alignItems="flex-start">
                         <ListItemAvatar>
                             <Avatar alt={name} > {name[0]} </Avatar>
                         </ListItemAvatar>
                         <ListItemText
-                            primary={`${title} ${moment(date).fromNow()}`}
+                            primary={
+                                `${title} - ${moment(date).fromNow()}`}
                             secondary={
                                 <React.Fragment>
                                     <Typography
@@ -46,16 +54,27 @@ const TripView = (props) => {
                                         color="textPrimary"
                                     >
                                         {name}
-                  </Typography>
-                                    {note}
+                                    </Typography>
+                                    <ExpansionPanel>
+                                        <ExpansionPanelSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1c-content"
+                                            id="panel1c-header"
+                                        >
+                                            <div>
+                                             <Typography className={classes.secondaryHeading} > Click to View the TravelLog </Typography>
+                                            </div>
+                                            </ExpansionPanelSummary>
+                                       </ExpansionPanel>
                                 </React.Fragment>
-                            }
-                        />
+                                    }
+                                />
+                              
                     </ListItem>
-                    <Divider variant="inset" component="li" />
+                                <Divider variant="inset" component="li" />
                 </React.Fragment>
-            ))}
+                    ))}
         </List>)
-}
-
+            }
+            
 export default TripView;

@@ -13,23 +13,7 @@ import axios from 'axios';
 
 
 const styles = (theme) => ({
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-    avatar: {
-        backgroundColor: red[500],
-    },
+   
 })
 
 const server = "http://localhost:5000" //for now fix this later
@@ -61,9 +45,9 @@ const SideList = (props) => {
             role="presentation">
             <FormControl>
 
-                <InputLabel htmlFor="my-input" >Title</InputLabel>
+                <InputLabel htmlFor="my-input" > Location </InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text" onChange={(e) => { setTitle(e.target.value) }} />
-                <FormHelperText id="my-helper-text">how you feel about this trip</FormHelperText>
+                <FormHelperText id="my-helper-text"> Enter a Place You Want to Log </FormHelperText>
 
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
@@ -91,7 +75,7 @@ const SideList = (props) => {
 
 
                 />
-                <Button variant="contained" size="small" className={classes.button} color="primary" onClick={props.saveEvent}>
+                <Button variant="contained" size="small" className={classes.button} color="primary" onClick={saveEvent}>
                     <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
                     Save
       </Button>
