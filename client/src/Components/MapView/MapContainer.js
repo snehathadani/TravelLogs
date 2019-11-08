@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import SideDrawer from './SideDrawer';
 import ApplicationBar from '../Header/AppBar';
 import axios from 'axios';
+import TripstartModal from "./TripstartModal";
 const MapContainer = (props) => {
 
   const server = "http://localhost:5000"
@@ -60,22 +61,8 @@ const MapContainer = (props) => {
         }}/>)}
       </Map>
 
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={showModal}
-        onClose={toggleModal}>
-        <div className={classes.dialog}>
-          <h2 id="simple-modal-title" text='#111111'>Where would you like to go next</h2>
-          <p id="simple-modal-description">
-            <ul>
 
-              <li onClick={() => { setShowModal(false); setSideDrawer(true) }}>Start a new trip</li>
-              <li>View other trips</li>
-            </ul>
-          </p>
-        </div>
-      </Modal>
+    <TripstartModal open ={showModal} closeModal={toggleModal} openSideDrawer={toggleSideDrawer}/> 
 
       <SideDrawer onClose={toggleSideDrawer} open={sideDrawer} lat={sideDrawerLatLng.lat} lng={sideDrawerLatLng.lng}/>
 

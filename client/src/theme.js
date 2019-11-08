@@ -1,6 +1,6 @@
 
 import { createMuiTheme } from '@material-ui/core/styles';
-import { lightGreen } from '@material-ui/core/colors';
+import { lightGreen, green } from '@material-ui/core/colors';
 import { AppBar } from '@material-ui/core/AppBar';
 
 const theme = createMuiTheme({
@@ -21,6 +21,7 @@ const theme = createMuiTheme({
 
     palette:{
         primary: lightGreen,
+        dark: green,
     },
     typography: {
         fontFamily: 'Roboto'

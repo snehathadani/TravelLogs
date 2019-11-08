@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FormControl, InputLabel, Input, FormHelperText } from '@material-ui/core';
+import { FormControl, InputLabel, Input, FormHelperText, Paper } from '@material-ui/core';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
@@ -7,14 +7,17 @@ import SaveIcon from '@material-ui/icons/Save';
 import clsx from 'clsx';
 import TripView from './TripView';
 import Button from '@material-ui/core/Button';
-import { red } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
 
-
-const styles = (theme) => ({
-   
-})
+const styles ={
+    root: {
+        backgroundColor: '#f1f8e9',
+        marginLeft: "3px",
+        marginRight: "3px"
+    },
+  };
 
 const server = "http://localhost:5000" //for now fix this later
 
@@ -40,10 +43,11 @@ const SideList = (props) => {
 
     const { classes } = props
     return (
+        <Paper className={classes.root}>
         <div
             className={classes.list}
             role="presentation">
-            <FormControl>
+            <FormControl fullWidth>
 
                 <InputLabel htmlFor="my-input" > Location </InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text" onChange={(e) => { setTitle(e.target.value) }} />
@@ -82,7 +86,9 @@ const SideList = (props) => {
             </FormControl>
             <TripView events={events} />
 
-        </div>)
+        </div>
+        </Paper>
+        )
 };
 
 export default withStyles(styles)(SideList);

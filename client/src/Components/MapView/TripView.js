@@ -1,17 +1,15 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Grid from '@material-ui/core/Grid'
+import { ExpansionPanelDetails } from "@material-ui/core";
+
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
@@ -34,47 +32,32 @@ const TripView = (props) => {
 
 
     const classes = useStyles();
-    return (
-        <List className={classes.root} >
-            {props.events.map(({ title, date, note, name }) => (
-                <React.Fragment>
-                    <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
+    return (props.events.map(({ title, date, note, name }) => (
+        <React.Fragment>
+
+            <ExpansionPanel>
+                <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1c-content"
+                    id="panel1c-header">
+                    <Grid container xs={12}>
+                        <Grid item xs={2}>
                             <Avatar alt={name} > {name[0]} </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={
-                                `${title} - ${moment(date).fromNow()}`}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography
-                                        component="span"
-                                        variant="body2"
-                                        className={classes.inline}
-                                        color="textPrimary"
-                                    >
-                                        {name}
-                                    </Typography>
-                                    <ExpansionPanel>
-                                        <ExpansionPanelSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                            aria-controls="panel1c-content"
-                                            id="panel1c-header"
-                                        >
-                                            <div>
-                                             <Typography className={classes.secondaryHeading} > Click to View the TravelLog </Typography>
-                                            </div>
-                                            </ExpansionPanelSummary>
-                                       </ExpansionPanel>
-                                </React.Fragment>
-                                    }
-                                />
-                              
-                    </ListItem>
-                                <Divider variant="inset" component="li" />
-                </React.Fragment>
-                    ))}
-        </List>)
-            }
-            
+                        </Grid>
+                        <Grid item xs={10}>
+                            <Typography component="span" variant="body2" className={classes.inline} color="textPrimary">
+                                {name}
+                            </Typography>
+                            <Typography component="span" variant="body2"> {`${title} - ${moment(date).fromNow()}`}</Typography>
+                        </Grid>
+                    </Grid>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    {note}
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+        </React.Fragment>
+    )))
+}
+
 export default TripView;

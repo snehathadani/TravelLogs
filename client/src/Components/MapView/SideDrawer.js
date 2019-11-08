@@ -2,10 +2,6 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 
 import SideList from './SideList';
-import { width } from '@material-ui/system';
-
-
-
 
  const SideDrawer=(props)=> {
   return (
