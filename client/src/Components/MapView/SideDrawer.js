@@ -1,6 +1,5 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-
 import SideList from './SideList';
 
  const SideDrawer=(props)=> {
