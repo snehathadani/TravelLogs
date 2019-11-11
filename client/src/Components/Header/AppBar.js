@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog from '@material-ui/core/Dialog';
+import axios from 'axios';
 const styles = (theme) => ({
     root: {
         flexGrow: 1,
@@ -40,6 +41,10 @@ function ApplicationBar(props) {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const loginInstagram = ()=>{
+        window.location = 'http://localhost:5000/auth/instagram'
+    }
     return (
         <div className={classes.root}>
             <AppBar position="fixed" color="primary"  >
@@ -54,7 +59,7 @@ function ApplicationBar(props) {
                                     <FacebookLoginButton onClick={() => setOpen(true)} />
                                 </Grid>
                                 <Grid item xs={2}>
-                                    <InstagramLoginButton onClick={() => props.history.push('/map')} />
+                                    <InstagramLoginButton onClick={loginInstagram} />
                                 </Grid>
 
                             </React.Fragment>)}

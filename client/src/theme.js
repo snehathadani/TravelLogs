@@ -20,8 +20,9 @@ const theme = createMuiTheme({
     },
 
     palette:{
-        primary: lightGreen,
+        primary: green,
         dark: green,
+        
     },
     typography: {
         fontFamily: 'Roboto'
