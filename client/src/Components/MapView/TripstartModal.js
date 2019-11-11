@@ -24,7 +24,7 @@ const handleClose = ()=> {
 }
   return (
       <Dialog
-        open={props.open}
+        open={props.open} 
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
